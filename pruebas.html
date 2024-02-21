@@ -1,0 +1,121 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Textarea a Tabla</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+</head>
+<body>
+
+<textarea id="texto"></textarea>
+<br>
+<button onclick="agregarFila()">Agregar a tabla</button>
+
+<table id="tabla">
+    <tr>
+        <th>Contenido</th>
+    </tr>
+</table>
+
+<script>
+function agregarFila() {
+    var texto = document.getElementById("texto").value;
+    var tabla = document.getElementById("tabla");
+    var fila = tabla.insertRow();
+    var celda = fila.insertCell();
+    celda.innerHTML = texto;
+}
+</script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analizador Léxico</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+</style>
+</head>
+<body>
+
+<textarea id="codigo" rows="10" cols="50"></textarea>
+<br>
+<button onclick="analizar()">Analizar</button>
+
+<table id="analizar_lexico">
+    <tr>
+        <th>LEXEMA</th>
+        <th>TOKEN</th>
+        <th>LÍNEA</th>
+        <th>COLUMNA</th>
+    </tr>
+</table>
+
+<script>
+function analizar() {
+    var codigo = document.getElementById("codigo").value;
+    var tabla = document.getElementById("analizar_lexico");
+    tabla.innerHTML = "<tr><th>LEXEMA</th><th>TOKEN</th><th>LÍNEA</th><th>COLUMNA</th></tr>";
+
+    // Expresiones regulares para tokens simples
+    var regexEntero = /\b\d+\b/g;
+    var regexIdentificador = /\b[a-zA-Z_][a-zA-Z0-9_]*\b/g;
+
+    var linea = 1;
+    var columna = 1;
+
+    // Ejecutar análisis léxico
+    var match;
+    while ((match = regexEntero.exec(codigo)) !== null) {
+        tabla.innerHTML += "<tr><td>" + match[0] + "</td><td>ENTERO</td><td>" + linea + "</td><td>" + columna + "</td></tr>";
+        columna += match[0].length;
+    }
+    columna = 1;
+
+    while ((match = regexIdentificador.exec(codigo)) !== null) {
+        tabla.innerHTML += "<tr><td>" + match[0] + "</td><td>IDENTIFICADOR</td><td>" + linea + "</td><td>" + columna + "</td></tr>";
+        columna += match[0].length;
+    }
+
+    // Calcular posición en el código
+    var index = codigo.indexOf("\n");
+    while (index !== -1) {
+        linea++;
+        columna = 1;
+        index = codigo.indexOf("\n", index + 1);
+    }
+}
+</script>
+
+</body>
+</html>
