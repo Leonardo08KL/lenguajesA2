@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Analizador Léxico</title>
-<link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-    <div id="container">
-        <div id="banner">Compilador Lenguajes y Automatas 2</div>
-        <div>
-            <div id="nav">
-                <div>
-                    <table id="analizar_lexico">
-                        <tr>
-                            <th>LEXEMA</th>
-                            <th>TOKEN</th>
-                            <th>LÍNEA</th>
-                            <th>COLUMNA</th>
-                        </tr>
-                    </table>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Analizador Léxico</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <div id="container">
+            <div id="banner">Compilador de Lenguajes y Autómatas 2</div>
+            <div>
+                <div id="nav">
+                        <table id="analizar_lexico">
+                            <tr>
+                                <th>ID</th>
+                                <th>LEXEMA</th>
+                                <th>TOKEN</th>
+                                <th>LÍNEA</th>
+                                <th>COLUMNA</th>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div id="content">
-                <div id="codigo" rows="10" cols="50">
-                    <textarea placeholder="//Escribe tu código aquí"></textarea>
+                <div id="content">
+                    <div id="codigo" rows="10" cols="50">
+                        <textarea
+                            placeholder="//Escribe tu código aquí"></textarea>
+                    </div>
+                    <br>
+                    <button onclick="analizar()">Analizar</button>
+                    <div id="errores">
+
+                    </div>
                 </div>
-                <br>
-                <button onclick="analizar()">Analizar</button>
-                <div id="errores"></div>
             </div>
         </div>
-    </div>
-</body>
-<script src="analizador_lexico.js"></script>
-
+    </body>
+    <script src="analizador_lexico.js"></script>
 </html>

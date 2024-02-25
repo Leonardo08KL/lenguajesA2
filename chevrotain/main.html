@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Analizador de Java</title>
+
+    </head>
+    <body>
+        <h1>Analizador de Java</h1>
+        <textarea id="codigoJava" rows="10" cols="50"></textarea>
+        <button onclick="analizarCodigo()">Analizar</button>
+        <div id="resultado"></div>
+        <script>
+            "use strict";
+            
+            // Requerir el módulo parser.js
+            const { parse } = require("./parser");
+            
+            function analizarCodigo() {
+                const inputText = document.getElementById('codigoJava').value;
+                try {
+                    const ast = parse(inputText);
+                    document.getElementById('resultado').innerHTML = '<pre>' + JSON.stringify(ast, null, 2) + '</pre>';
+                } catch (error) {
+                    document.getElementById('resultado').innerHTML = '<p>Error: ' + error.message + '</p>';
+                }
+            }
+        </script>
+    </body>
+</html>
